@@ -5,31 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Напутствие</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap');
 
     body {
       margin: 0;
       padding: 0;
       height: 100vh;
-      font-family: 'Cormorant Garamond', serif;
-      color: white;
-      background: url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=900&q=80') no-repeat center center fixed;
-      background-size: cover;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 25px;
-      font-size: 1.3em;
-      line-height: 1.6;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.8);
-      transition: background 1s ease-in-out;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4em;
+      color: #fff;
+      background: url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+      background-size: cover;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
     }
 
     #quote {
-      opacity: 0;
-      transition: opacity 1.2s ease-in-out;
       max-width: 90%;
+      line-height: 1.5;
+      padding: 0 15px;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @media (min-width: 768px) {
@@ -111,19 +115,9 @@
       "Ты часть чего-то большего — живи, чувствуя это."
     ];
 
-    const quoteElement = document.getElementById('quote');
-
-    function showRandomQuote() {
-      quoteElement.style.opacity = 0;
-      setTimeout(() => {
-        const random = Math.floor(Math.random() * quotes.length);
-        quoteElement.textContent = quotes[random];
-        quoteElement.style.opacity = 1;
-      }, 500);
-    }
-
-    showRandomQuote();
-    setInterval(showRandomQuote, 8000); // каждые 8 секунд
+    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+    document.getElementById("quote").textContent = randomQuote;
   </script>
 </body>
 </html>
+
