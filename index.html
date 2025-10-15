@@ -3,54 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Напутствия</title>
+  <title>Напутствие</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&display=swap');
+
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Cormorant Garamond', serif;
-      background: url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=800&q=80') no-repeat center center fixed;
-      background-size: cover;
-      color: white;
-      text-align: center;
       height: 100vh;
+      font-family: 'Cormorant Garamond', serif;
+      color: white;
+      background: url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=900&q=80') no-repeat center center fixed;
+      background-size: cover;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
       align-items: center;
-      font-size: 1.2em;
-      padding: 30px;
+      justify-content: center;
+      text-align: center;
+      padding: 25px;
+      font-size: 1.3em;
+      line-height: 1.6;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.8);
+      transition: background 1s ease-in-out;
     }
 
     #quote {
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
       max-width: 90%;
-      line-height: 1.5;
-      font-style: italic;
-      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
-      transition: opacity 0.6s ease-in-out;
     }
 
-    button {
-      margin-top: 30px;
-      background: rgba(255, 255, 255, 0.2);
-      border: none;
-      color: white;
-      font-size: 1em;
-      padding: 10px 20px;
-      border-radius: 8px;
-      backdrop-filter: blur(6px);
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    button:hover {
-      background: rgba(255, 255, 255, 0.35);
+    @media (min-width: 768px) {
+      body {
+        font-size: 1.6em;
+      }
     }
   </style>
 </head>
 <body>
-  <div id="quote">Нажми, чтобы получить напутствие 🌌</div>
-  <button onclick="newQuote()">✨ Получить напутствие</button>
+  <div id="quote"></div>
 
   <script>
     const quotes = [
@@ -60,7 +50,7 @@
       "Радость — это язык души.",
       "Там, где отпускаешь контроль, рождается чудо.",
       "Всё происходит не против тебя, а ради твоего роста.",
-      "Свет внутри тебя - сильнее любой тьмы.",
+      "Свет внутри тебя — сильнее любой тьмы.",
       "Не нужно быть идеальным, достаточно быть живым.",
       "Сердце знает путь — просто доверься.",
       "Не ищи вдохновения — будь им.",
@@ -121,14 +111,19 @@
       "Ты часть чего-то большего — живи, чувствуя это."
     ];
 
-    function newQuote() {
-      const q = document.getElementById('quote');
-      q.style.opacity = 0;
+    const quoteElement = document.getElementById('quote');
+
+    function showRandomQuote() {
+      quoteElement.style.opacity = 0;
       setTimeout(() => {
-        q.innerText = quotes[Math.floor(Math.random() * quotes.length)];
-        q.style.opacity = 1;
-      }, 400);
+        const random = Math.floor(Math.random() * quotes.length);
+        quoteElement.textContent = quotes[random];
+        quoteElement.style.opacity = 1;
+      }, 500);
     }
+
+    showRandomQuote();
+    setInterval(showRandomQuote, 8000); // каждые 8 секунд
   </script>
 </body>
 </html>
