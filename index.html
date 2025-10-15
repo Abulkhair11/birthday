@@ -3,57 +3,79 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Пожелание — Сюцай</title>
+<title>Пожелание</title>
 <style>
-:root{
-  --bg:#0f1724;--card:#0b1220;--accent:#f7c948;--muted:#9aa7b2;
-  font-family:Inter,Roboto,Arial,sans-serif;
+:root {
+  --bg1: #0d1b2a;
+  --bg2: #1b263b;
+  --text: #f0f4f8;
+  --accent: #00d4ff;
+  font-family: 'Inter', 'Roboto', Arial, sans-serif;
 }
-html,body{margin:0;height:100%;background:linear-gradient(180deg,var(--bg),#081021);color:#e6eef6;display:flex;align-items:center;justify-content:center;padding:20px}
-.card{background:linear-gradient(180deg,var(--card),#071021);padding:30px;border-radius:16px;max-width:700px;width:100%;box-shadow:0 10px 25px rgba(0,0,0,.6);text-align:center}
-.logo{font-size:40px;font-weight:800;background:linear-gradient(90deg,var(--accent),#ffb86b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px}
-h1{margin:0 0 8px}
-.wish{font-size:22px;margin:30px 0;min-height:90px}
-.num{font-size:70px;font-weight:900;opacity:.08;position:absolute;width:100%;left:0;top:20px;pointer-events:none}
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(160deg, var(--bg1), var(--bg2));
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  font-size: 22px;
+  line-height: 1.5;
+}
+.wish {
+  max-width: 800px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  backdrop-filter: blur(8px);
+  animation: fadeIn 1.5s ease;
+}
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
 </style>
 </head>
 <body>
-<div class="card">
-  <div class="logo">СЮЦАЙ</div>
-  <h1>Твоё пожелание</h1>
-  <div class="wish-box" style="position:relative">
-    <div class="num" id="num">00</div>
-    <div class="wish" id="wish">Генерируется...</div>
-  </div>
-</div>
+  <div class="wish" id="wish">Загружается пожелание...</div>
+
 <script>
-const wishes=[
-"Пусть каждый день приносит радость и спокойствие.",
-"Пусть все задуманное сбывается без препятствий.",
-"Желаем тепла, улыбок и удачи на каждом шагу.",
-"Пусть мечты исполняются легко и красиво.",
-"Пусть в сердце всегда живёт вдохновение.",
-"Пусть жизнь сияет, как огни города ночью.",
-"Желаем крепкого здоровья и гармонии в душе.",
-"Пусть день рождения станет началом счастливого года.",
-"Пусть рядом будут люди, которые делают тебя счастливым.",
-"Желаем лёгкости во всех делах и внутреннего спокойствия.",
-"Пусть жизнь наполняется светом, смыслом и радостью.",
-"Пусть сила воли и вера всегда будут твоими спутниками.",
-"Пусть сердце будет добрым, а дорога — прямой и ясной.",
-"Желаем вдохновения, смелости и удачи в каждом проекте.",
-"Пусть успех приходит без стука — сам открывает дверь.",
-"Желаем любви, энергии и бесконечного оптимизма.",
-"Пусть улыбка будет твоим постоянным украшением.",
-"Пусть этот год принесёт новые открытия и радость.",
-"Желаем, чтобы мечты исполнялись быстрее, чем загадываются.",
-"Пусть всё, что ты делаешь, приносит радость и пользу."
+const wishes = [
+  "Пусть каждый день приносит ясность ума и внутреннюю уверенность в своих решениях.",
+  "Пусть энергия идей превращается в реальные результаты без выгорания и спешки.",
+  "Желаем вдохновения действовать с осознанностью и спокойствием лидера.",
+  "Пусть вокруг тебя будут партнёры, которые разделяют твои ценности и двигаются с тобой в одном ритме.",
+  "Пусть каждый проект несёт не только прибыль, но и смысл.",
+  "Пусть твои решения будут точными, а интуиция — надёжным советчиком.",
+  "Желаем лёгкости в принятии сложных решений и мудрости в простых.",
+  "Пусть жизнь становится бизнесом по радости, а не только по результатам.",
+  "Пусть пространство вокруг наполняется энергией процветания и осознанности.",
+  "Желаем, чтобы деньги приходили легко и с удовольствием — как отражение твоей ценности миру.",
+  "Пусть твои цели будут большими, но не тяжелыми.",
+  "Пусть каждый шаг к успеху будет пропитан гармонией и спокойствием.",
+  "Желаем видеть возможности там, где другие видят преграды.",
+  "Пусть каждый день даёт повод для гордости, но без суеты.",
+  "Пусть идеи рождаются свободно, а воплощаются — с удовольствием.",
+  "Желаем устойчивости в переменах и радости в росте.",
+  "Пусть в твоём деле всегда будет баланс стратегии и вдохновения.",
+  "Пусть твоя команда чувствует твоё лидерство как поддержку, а не давление.",
+  "Пусть результаты приходят быстро, но не уводят от внутреннего спокойствия.",
+  "Пусть изобилие течёт естественно — туда, где есть польза и честность.",
+  "Желаем лёгкости в масштабировании и устойчивости в любой турбулентности.",
+  "Пусть каждый день начинается с благодарности и заканчивается вдохновением.",
+  "Пусть твоя энергия умножает возможности, а не усталость.",
+  "Пусть ты всегда будешь в потоке — и внутри, и в бизнесе.",
+  "Желаем тебе не просто успеха, а глубокого удовлетворения от пути."
 ];
-(function showWish(){
-  const i=Math.floor(Math.random()*wishes.length);
-  document.getElementById('wish').textContent = wishes[i];
-  document.getElementById('num').textContent = String(i+1).padStart(2,'0');
-})();
+
+const wish = wishes[Math.floor(Math.random() * wishes.length)];
+document.getElementById('wish').textContent = wish;
 </script>
 </body>
 </html>
+
+
